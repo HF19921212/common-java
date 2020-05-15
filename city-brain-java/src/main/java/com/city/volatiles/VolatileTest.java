@@ -1,5 +1,8 @@
 package com.city.volatiles;
 
+/**
+ * 验证volatile关键字的有序性和可见性
+ */
 public class VolatileTest {
 
     private static volatile boolean initFlag = false;
