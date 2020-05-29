@@ -21,6 +21,9 @@ public class MyServlet extends HttpServlet {
     @Override
     public void init() throws ServletException {
         System.out.println("MyServlet -> init");
+        //测试自定义上下文监听器获取初始化参数
+        String initData = (String) getServletContext().getAttribute("mvc_context");
+        System.out.println("init data："+initData);
         super.init();
     }
 

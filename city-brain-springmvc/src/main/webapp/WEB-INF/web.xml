@@ -19,4 +19,9 @@
         <url-pattern>/</url-pattern>
     </servlet-mapping>
 
+    <!-- 自定义容器初始化监听器 -->
+    <listener>
+        <listener-class>com.city.listener.MyDataContextListener</listener-class>
+    </listener>
+
 </web-app>
