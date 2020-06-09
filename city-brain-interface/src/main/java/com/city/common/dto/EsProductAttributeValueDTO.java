@@ -1,11 +1,11 @@
-package com.city.common.document;
+package com.city.common.dto;
 
 import java.io.Serializable;
 
 /**
  * 商品属性
  */
-public class EsProductAttributeValue implements Serializable {
+public class EsProductAttributeValueDTO implements Serializable {
     private static final long serialVersionUID = 1L;
     //属性值id
     private Long id;

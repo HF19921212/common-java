@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC
+        "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.city.dao.EsProductDao">
+    <select id="getProductEs" resultType="com.city.document.EsProduct" parameterType="java.lang.Long">
+        SELECT DISTINCT
+        p.id id,
+        p.product_sn productSn,
+        p.brand_id brandId,
+
+        p.product_category_id productCategoryId,
+        p.pic pic,
+        p. NAME NAME,
+        p.detail_title detailTitle,
+        p.min_price minPrice,
+        p.recommand_status recommandStatus,
+        p.stock_total stockTotal
+        FROM
+        pms_product p
+
+        LEFT JOIN pms_product_attribute_category ppac ON ppac.id = p.product_attribute_category_id
+        LEFT JOIN pms_product_attribute pa ON pa.product_attribute_category_id = ppac.id
+        LEFT JOIN pms_product_attribute_value pav ON pa.id = pav.product_attribute_id
+        WHERE
+        p.publish_status = 1
+        <if test="id!=null">
+            AND p.id=#{id}
+        </if>
+    </select>
+</mapper>

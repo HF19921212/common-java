@@ -1,4 +1,4 @@
-package com.city.common.document;
+package com.city.common.dto;
 
 import org.springframework.data.annotation.Id;
 
@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * 商品信息
  */
-public class EsProduct implements Serializable {
+public class EsProductDTO implements Serializable {
     private static final long serialVersionUID = -1L;
     @Id
     private Long id;
@@ -28,7 +28,7 @@ public class EsProduct implements Serializable {
     private String detailTitle;
     private String detailSubTitle;
     private String keyword;
-    private List<EsProductAttributeValue> attrValueList;
+    private List<EsProductAttributeValueDTO> attrValueList;
 
     public String getKeyword() {
         return keyword;
@@ -158,11 +158,11 @@ public class EsProduct implements Serializable {
         this.detailSubTitle = detailSubTitle;
     }
 
-    public List<EsProductAttributeValue> getAttrValueList() {
+    public List<EsProductAttributeValueDTO> getAttrValueList() {
         return attrValueList;
     }
 
-    public void setAttrValueList(List<EsProductAttributeValue> attrValueList) {
+    public void setAttrValueList(List<EsProductAttributeValueDTO> attrValueList) {
         this.attrValueList = attrValueList;
     }
 }

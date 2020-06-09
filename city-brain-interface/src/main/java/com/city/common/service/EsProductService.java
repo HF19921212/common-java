@@ -1,9 +1,15 @@
 package com.city.common.service;
 
-import com.city.common.document.EsProduct;
+import com.city.common.dto.EsProductDTO;
 import org.springframework.data.domain.Page;
 
 public interface EsProductService {
+
+    /**
+     * 从数据库中导入商品到ES
+     * @return
+     */
+    int importAll();
 
     /**
      * 根据关键字搜索
@@ -12,6 +18,6 @@ public interface EsProductService {
      * @param pageSize
      * @return
      */
-    Page<EsProduct> searchPage(String keyword, Integer pageNum, Integer pageSize);
+    Page<EsProductDTO> searchPage(String keyword, Integer pageNum, Integer pageSize);
 
 }
