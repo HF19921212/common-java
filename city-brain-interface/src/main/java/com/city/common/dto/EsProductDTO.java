@@ -1,7 +1,5 @@
 package com.city.common.dto;
 
-import org.springframework.data.annotation.Id;
-
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.List;
@@ -11,7 +9,6 @@ import java.util.List;
  */
 public class EsProductDTO implements Serializable {
     private static final long serialVersionUID = -1L;
-    @Id
     private Long id;
     private Long brandId;
     private Long productCategoryId;

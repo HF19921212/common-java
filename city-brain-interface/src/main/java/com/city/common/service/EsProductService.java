@@ -1,7 +1,7 @@
 package com.city.common.service;
 
 import com.city.common.dto.EsProductDTO;
-import org.springframework.data.domain.Page;
+import com.city.common.util.CommonPage;
 
 public interface EsProductService {
 
@@ -18,6 +18,6 @@ public interface EsProductService {
      * @param pageSize
      * @return
      */
-    Page<EsProductDTO> searchPage(String keyword, Integer pageNum, Integer pageSize);
+    CommonPage<EsProductDTO> searchPage(String keyword, Integer pageNum, Integer pageSize);
 
 }
