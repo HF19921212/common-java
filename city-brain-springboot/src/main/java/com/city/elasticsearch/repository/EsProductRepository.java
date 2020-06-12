@@ -1,6 +1,6 @@
-package com.city.repository;
+package com.city.elasticsearch.repository;
 
-import com.city.document.EsProduct;
+import com.city.elasticsearch.document.EsProduct;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.elasticsearch.repository.ElasticsearchRepository;

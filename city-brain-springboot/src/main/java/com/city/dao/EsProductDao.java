@@ -1,6 +1,6 @@
 package com.city.dao;
 
-import com.city.document.EsProduct;
+import com.city.elasticsearch.document.EsProduct;
 
 import java.util.List;
 

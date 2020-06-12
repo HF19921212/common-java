@@ -9,13 +9,13 @@
 
     <dubbo:application name="hello-world-consumer" />
 
-    <dubbo:registry address="N/A" />
+    <dubbo:registry address="zookeeper://127.0.0.1:2181" />
 
     <!-- 用dubbo协议在20880端口暴露服务 -->
     <dubbo:protocol name="dubbo" port="20880" />
 
-    <!-- url直连方式调用 点对点 -->
-    <dubbo:reference id="esProductService" interface="com.city.common.service.EsProductService"
-                     url="dubbo://192.168.56.1:20880/com.city.common.service.EsProductService"/>
+    <!-- 服务引入 -->
+    <!-- 商品搜索 -->
+    <dubbo:reference id="esProductService" interface="com.city.common.service.EsProductService"/>
 
 </beans>

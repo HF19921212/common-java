@@ -1,4 +1,4 @@
-package com.city.document;
+package com.city.elasticsearch.document;
 
 import org.springframework.data.elasticsearch.annotations.Field;
 import org.springframework.data.elasticsearch.annotations.FieldType;

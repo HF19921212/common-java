@@ -1,6 +1,6 @@
 package com.city;
 
-import com.city.document.EsProduct;
+import com.city.elasticsearch.document.EsProduct;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

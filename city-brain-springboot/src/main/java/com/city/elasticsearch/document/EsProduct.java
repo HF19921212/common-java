@@ -1,4 +1,4 @@
-package com.city.document;
+package com.city.elasticsearch.document;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.elasticsearch.annotations.Document;
@@ -7,7 +7,6 @@ import org.springframework.data.elasticsearch.annotations.FieldType;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.List;
 
 /**
  * 商品信息
@@ -57,9 +56,6 @@ public class EsProduct implements Serializable {
     private String detailSubTitle;
     @Field(analyzer = "ik_max_word", type = FieldType.Text)
     private String keyword;
-
-    @Field(type = FieldType.Nested)     //嵌套对象类型
-    private List<EsProductAttributeValue> attrValueList;
 
     public String getKeyword() {
         return keyword;
