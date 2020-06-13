@@ -5,6 +5,7 @@
     <modules>
         <module>city-brain-springmvc</module>
         <module>city-brain-interface</module>
+        <module>city-brain-zookeeper</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
