@@ -2,7 +2,7 @@ package com.city.common.bio;
 
 
 import com.city.common.bio.proxy.RpcProxyClient;
-import com.city.common.bio.service.IHelloService;
+import com.city.common.interfaces.IHelloService;
 
 public class RpcClient {
     public static void main(String[] args) {

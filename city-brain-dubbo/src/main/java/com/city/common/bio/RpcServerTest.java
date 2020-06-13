@@ -1,9 +1,8 @@
 package com.city.common.bio;
 
-import com.city.common.bio.proxy.RpcProxyClient;
 import com.city.common.bio.proxy.RpcProxyServer;
-import com.city.common.bio.service.HelloServiceImpl;
-import com.city.common.bio.service.IHelloService;
+import com.city.common.interfaces.IHelloService;
+import com.city.common.nio.bean.HelloServiceImpl;
 
 public class RpcServerTest {
 
@@ -15,11 +14,6 @@ public class RpcServerTest {
         //服务发布
         RpcProxyServer proxyServer = new RpcProxyServer();
         proxyServer.publisher(helloService,port);
-
-        //调用远程服务
-        RpcProxyClient client = new RpcProxyClient();
-        IHelloService service = client.clientProxy(IHelloService.class,"localhost",8080);
-        System.out.println(service.sayHello("hefan"));
 
     }
 }
