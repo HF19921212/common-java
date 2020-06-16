@@ -18,7 +18,7 @@
 
     <!-- 声明需要暴露的服务接口 -->
     <dubbo:service interface="com.city.service.DemoService" ref="demoService"/>
-    <dubbo:service interface="com.city.common.service.EsProductService" ref="esProductService"/>
+    <dubbo:service interface="com.city.common.bio.service.EsProductService" ref="esProductService"/>
 
     <!-- 和本地bean一样实现服务 -->
     <bean id="demoService" class="com.city.service.DemoServiceImpl" />

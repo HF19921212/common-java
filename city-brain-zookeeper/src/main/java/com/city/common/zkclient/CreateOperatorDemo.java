@@ -1,4 +1,4 @@
-package com.city.common.curator;
+package com.city.common.zkclient;
 
 import org.I0Itec.zkclient.IZkChildListener;
 import org.I0Itec.zkclient.IZkDataListener;

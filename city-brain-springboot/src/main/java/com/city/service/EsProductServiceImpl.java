@@ -1,7 +1,7 @@
 package com.city.service;
 
 import com.city.common.dto.EsProductDTO;
-import com.city.common.service.EsProductService;
+import com.city.common.bio.service.EsProductService;
 import com.city.common.util.CommonPage;
 import com.city.dao.EsProductDao;
 import com.city.elasticsearch.document.EsProduct;

@@ -1,6 +1,6 @@
 package com.city.controller;
 
-import com.city.common.service.EsProductService;
+import com.city.common.bio.service.EsProductService;
 import com.power.common.model.CommonResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
