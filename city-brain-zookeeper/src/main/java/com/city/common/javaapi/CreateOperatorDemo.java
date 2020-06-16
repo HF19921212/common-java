@@ -4,6 +4,7 @@ import org.apache.zookeeper.*;
 import org.apache.zookeeper.data.Stat;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 
@@ -52,6 +53,8 @@ public class CreateOperatorDemo implements Watcher{
         zooKeeper.setData(path+"/frend-1","456".getBytes(),-1);
         TimeUnit.SECONDS.sleep(1);
 
+        List<String> children = zooKeeper.getChildren("node",true);
+        System.out.println(children);
     }
 
     @Override
