@@ -6,6 +6,9 @@
         <module>city-brain-springmvc</module>
         <module>city-brain-interface</module>
         <module>city-brain-zookeeper</module>
+        <module>city-brain-dubbo</module>
+        <module>city-brain-netty</module>
+        <module>city-brain-jms</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
