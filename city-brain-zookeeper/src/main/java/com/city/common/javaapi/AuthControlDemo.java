@@ -5,7 +5,6 @@ import org.apache.zookeeper.data.Stat;
 
 import java.io.IOException;
 import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.TimeUnit;
 
 public class AuthControlDemo implements Watcher {
     //集群地址
