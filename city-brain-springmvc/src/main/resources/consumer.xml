@@ -16,6 +16,6 @@
 
     <!-- 服务引入 -->
     <!-- 商品搜索 -->
-    <dubbo:reference id="esProductService" interface="com.city.common.service.EsProductService"/>
+    <dubbo:reference id="esProductService" interface="com.city.common.bio.service.EsProductService"/>
 
 </beans>

@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="city-brain-redis:war">
+    <output-path>$PROJECT_DIR$/city-brain-redis/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>city-brain-redis</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="city-brain-redis-0.0.1-SNAPSHOT.war">
+      <element id="artifact" artifact-name="city-brain-redis:war exploded" />
+    </root>
+  </artifact>
+</component>

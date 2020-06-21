@@ -1,7 +1,7 @@
 package com.city.service;
 
 import com.city.dao.EsProductDao;
-import com.city.document.EsProduct;
+import com.city.elasticsearch.document.EsProduct;
 import com.city.repository.EsProductRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

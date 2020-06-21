@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="city-brain-springmvc:war">
+    <output-path>$PROJECT_DIR$/city-brain-springmvc/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>city-brain-springmvc</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="city-brain-springmvc.war">
+      <element id="artifact" artifact-name="city-brain-springmvc:war exploded" />
+    </root>
+  </artifact>
+</component>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="city-brain-elasticsearch" />
+        <module name="city-brain-java" />
+        <module name="city-brain-jms" />
+        <module name="city-brain-netty" />
+        <module name="city-brain-dubbo" />
+        <module name="city-brain-zookeeper" />
+        <module name="city-brain-redis" />
+        <module name="city-brain-springboot" />
+        <module name="city-brain-springmvc" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="city-brain-common" target="1.8" />
+      <module name="city-brain-dubbo" target="1.7" />
+      <module name="city-brain-elasticsearch" target="1.8" />
+      <module name="city-brain-interface" target="1.8" />
+      <module name="city-brain-java" target="1.8" />
+      <module name="city-brain-jms" target="1.8" />
+      <module name="city-brain-netty" target="1.8" />
+      <module name="city-brain-redis" target="1.8" />
+      <module name="city-brain-springboot" target="1.8" />
+      <module name="city-brain-springmvc" target="1.8" />
+      <module name="city-brain-zookeeper" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="city-brain-elasticsearch" options="-parameters" />
+      <module name="city-brain-java" options="-parameters" />
+      <module name="city-brain-jms" options="-parameters" />
+      <module name="city-brain-netty" options="" />
+      <module name="city-brain-redis" options="" />
+      <module name="city-brain-springboot" options="-parameters" />
+      <module name="city-brain-zookeeper" options="" />
+    </option>
+  </component>
+</project>

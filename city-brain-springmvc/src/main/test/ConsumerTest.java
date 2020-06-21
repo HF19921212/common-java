@@ -1,4 +1,4 @@
-import com.city.common.service.EsProductService;
+import com.city.common.bio.service.EsProductService;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 

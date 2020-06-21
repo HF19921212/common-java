@@ -286,8 +286,9 @@ public class DubboProtocol extends AbstractProtocol {
         DubboExporter<T> exporter = new DubboExporter<T>(invoker, key, exporterMap);
         exporterMap.put(key, exporter);
 
-        //export an stub service for dispatching event
+        // 这里会判断是否是stub服务,默认false
         Boolean isStubSupportEvent = url.getParameter(STUB_EVENT_KEY, DEFAULT_STUB_EVENT);
+        // 判断是否是callback服务
         Boolean isCallbackservice = url.getParameter(IS_CALLBACK_SERVICE, false);
         if (isStubSupportEvent && !isCallbackservice) {
             String stubServiceMethods = url.getParameter(STUB_EVENT_METHODS_KEY);
@@ -299,7 +300,7 @@ public class DubboProtocol extends AbstractProtocol {
 
             }
         }
-
+        // 开启Netty服务
         openServer(url);
         optimizeSerialization(url);
 

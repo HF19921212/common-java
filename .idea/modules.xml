@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/city-brain-common.iml" filepath="$PROJECT_DIR$/city-brain-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/city-brain-dubbo/city-brain-dubbo.iml" filepath="$PROJECT_DIR$/city-brain-dubbo/city-brain-dubbo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/city-brain-elasticsearch/city-brain-elasticsearch.iml" filepath="$PROJECT_DIR$/city-brain-elasticsearch/city-brain-elasticsearch.iml" />
+      <module fileurl="file://$PROJECT_DIR$/city-brain-interface/city-brain-interface.iml" filepath="$PROJECT_DIR$/city-brain-interface/city-brain-interface.iml" />
+      <module fileurl="file://$PROJECT_DIR$/city-brain-java/city-brain-java.iml" filepath="$PROJECT_DIR$/city-brain-java/city-brain-java.iml" />
+      <module fileurl="file://$PROJECT_DIR$/city-brain-jms/city-brain-jms.iml" filepath="$PROJECT_DIR$/city-brain-jms/city-brain-jms.iml" />
+      <module fileurl="file://$PROJECT_DIR$/city-brain-netty/city-brain-netty.iml" filepath="$PROJECT_DIR$/city-brain-netty/city-brain-netty.iml" />
+      <module fileurl="file://$PROJECT_DIR$/city-brain-redis/city-brain-redis.iml" filepath="$PROJECT_DIR$/city-brain-redis/city-brain-redis.iml" />
+      <module fileurl="file://$PROJECT_DIR$/city-brain-springboot/city-brain-springboot.iml" filepath="$PROJECT_DIR$/city-brain-springboot/city-brain-springboot.iml" />
+      <module fileurl="file://$PROJECT_DIR$/city-brain-springmvc/city-brain-springmvc.iml" filepath="$PROJECT_DIR$/city-brain-springmvc/city-brain-springmvc.iml" />
+      <module fileurl="file://$PROJECT_DIR$/city-brain-zookeeper/city-brain-zookeeper.iml" filepath="$PROJECT_DIR$/city-brain-zookeeper/city-brain-zookeeper.iml" />
+    </modules>
+  </component>
+</project>

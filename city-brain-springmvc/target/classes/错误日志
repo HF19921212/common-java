@@ -1,0 +1,38 @@
+1.ElasticsearchRepository 自定义查询无法查询数据
+  org.elasticsearch.index.mapper.MapperParsingException：字段[名称]找不到分析器[ik_max_word]
+  问题原因：越少ik分词器插件
+
+[2020-06-11T09:48:29,032][INFO ][o.e.n.Node               ] initialized
+[2020-06-11T09:48:29,033][INFO ][o.e.n.Node               ] [XKLNbWt] starting ...
+[2020-06-11T09:48:31,571][INFO ][o.e.t.TransportService   ] [XKLNbWt] publish_address {127.0.0.1:9300}, bound_addresses {127.0.0.1:9300}, {[::1]:9300}
+[2020-06-11T09:48:34,611][INFO ][o.e.c.s.MasterService    ] [XKLNbWt] zen-disco-elected-as-master ([0] nodes joined), reason: new_master {XKLNbWt}{XKLNbWt0SG2EUnfj6qrqBg}{9pJXWI58RxGq5yARYjmoAA}{127.0.0.1}{127.0.0.1:9300}
+[2020-06-11T09:48:34,615][INFO ][o.e.c.s.ClusterApplierService] [XKLNbWt] new_master {XKLNbWt}{XKLNbWt0SG2EUnfj6qrqBg}{9pJXWI58RxGq5yARYjmoAA}{127.0.0.1}{127.0.0.1:9300}, reason: apply cluster state (from master [master {XKLNbWt}{XKLNbWt0SG2EUnfj6qrqBg}{9pJXWI58RxGq5yARYjmoAA}{127.0.0.1}{127.0.0.1:9300} committed version [1] source [zen-disco-elected-as-master ([0] nodes joined)]])
+[2020-06-11T09:48:34,779][INFO ][o.e.g.GatewayService     ] [XKLNbWt] recovered [1] indices into cluster_state
+[2020-06-11T09:48:35,099][INFO ][o.e.c.r.a.AllocationService] [XKLNbWt] Cluster health status changed from [RED] to [GREEN] (reason: [shards started [[pms][0]] ...]).
+[2020-06-11T09:48:36,127][INFO ][o.e.h.n.Netty4HttpServerTransport] [XKLNbWt] publish_address {127.0.0.1:9200}, bound_addresses {127.0.0.1:9200}, {[::1]:9200}
+[2020-06-11T09:48:36,127][INFO ][o.e.n.Node               ] [XKLNbWt] started
+[2020-06-11T09:49:07,607][DEBUG][o.e.a.a.i.m.p.TransportPutMappingAction] [XKLNbWt] failed to put mappings on indices [[[pms/0lDkf05iTeyVJ0ph7kODeA]]], type [product]
+org.elasticsearch.index.mapper.MapperParsingException: analyzer [ik_max_word] not found for field [name]
+        at org.elasticsearch.index.mapper.TypeParsers.parseAnalyzersAndTermVectors(TypeParsers.java:112) ~[elasticsearch-6.2.2.jar:6.2.2]
+        at org.elasticsearch.index.mapper.TypeParsers.parseTextField(TypeParsers.java:201) ~[elasticsearch-6.2.2.jar:6.2.2]
+        at org.elasticsearch.index.mapper.TextFieldMapper$TypeParser.parse(TextFieldMapper.java:141) ~[elasticsearch-6.2.2.jar:6.2.2]
+        at org.elasticsearch.index.mapper.ObjectMapper$TypeParser.parseProperties(ObjectMapper.java:278) ~[elasticsearch-6.2.2.jar:6.2.2]
+        at org.elasticsearch.index.mapper.ObjectMapper$TypeParser.parseObjectOrDocumentTypeProperties(ObjectMapper.java:199) ~[elasticsearch-6.2.2.jar:6.2.2]
+        at org.elasticsearch.index.mapper.RootObjectMapper$TypeParser.parse(RootObjectMapper.java:131) ~[elasticsearch-6.2.2.jar:6.2.2]
+        at org.elasticsearch.index.mapper.DocumentMapperParser.parse(DocumentMapperParser.java:111) ~[elasticsearch-6.2.2.jar:6.2.2]
+        at org.elasticsearch.index.mapper.DocumentMapperParser.parse(DocumentMapperParser.java:91) ~[elasticsearch-6.2.2.jar:6.2.2]
+        at org.elasticsearch.index.mapper.MapperService.parse(MapperService.java:732) ~[elasticsearch-6.2.2.jar:6.2.2]
+        at org.elasticsearch.cluster.metadata.MetaDataMappingService$PutMappingExecutor.applyRequest(MetaDataMappingService.java:264) ~[elasticsearch-6.2.2.jar:6.2.2]
+        at org.elasticsearch.cluster.metadata.MetaDataMappingService$PutMappingExecutor.execute(MetaDataMappingService.java:230) ~[elasticsearch-6.2.2.jar:6.2.2]
+        at org.elasticsearch.cluster.service.MasterService.executeTasks(MasterService.java:643) ~[elasticsearch-6.2.2.jar:6.2.2]
+        at org.elasticsearch.cluster.service.MasterService.calculateTaskOutputs(MasterService.java:273) ~[elasticsearch-6.2.2.jar:6.2.2]
+        at org.elasticsearch.cluster.service.MasterService.runTasks(MasterService.java:198) [elasticsearch-6.2.2.jar:6.2.2]
+        at org.elasticsearch.cluster.service.MasterService$Batcher.run(MasterService.java:133) [elasticsearch-6.2.2.jar:6.2.2]
+        at org.elasticsearch.cluster.service.TaskBatcher.runIfNotProcessed(TaskBatcher.java:150) [elasticsearch-6.2.2.jar:6.2.2]
+        at org.elasticsearch.cluster.service.TaskBatcher$BatchedTask.run(TaskBatcher.java:188) [elasticsearch-6.2.2.jar:6.2.2]
+        at org.elasticsearch.common.util.concurrent.ThreadContext$ContextPreservingRunnable.run(ThreadContext.java:573) [elasticsearch-6.2.2.jar:6.2.2]
+        at org.elasticsearch.common.util.concurrent.PrioritizedEsThreadPoolExecutor$TieBreakingPrioritizedRunnable.runAndClean(PrioritizedEsThreadPoolExecutor.java:244) [elasticsearch-6.2.2.jar:6.2.2]
+        at org.elasticsearch.common.util.concurrent.PrioritizedEsThreadPoolExecutor$TieBreakingPrioritizedRunnable.run(PrioritizedEsThreadPoolExecutor.java:207) [elasticsearch-6.2.2.jar:6.2.2]
+        at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [?:1.8.0_241]
+        at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [?:1.8.0_241]
+        at java.lang.Thread.run(Thread.java:748) [?:1.8.0_241]

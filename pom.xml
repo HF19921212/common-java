@@ -9,6 +9,7 @@
         <module>city-brain-dubbo</module>
         <module>city-brain-netty</module>
         <module>city-brain-jms</module>
+        <module>city-brain-redis</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>

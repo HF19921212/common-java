@@ -1,7 +1,7 @@
 package com.city.controller;
 
 import com.city.common.dto.EsProductDTO;
-import com.city.common.service.EsProductService;
+import com.city.common.bio.service.EsProductService;
 import com.city.common.util.CommonPage;
 import com.power.common.model.CommonResult;
 import org.springframework.beans.factory.annotation.Autowired;

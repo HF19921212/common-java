@@ -312,8 +312,9 @@ public class ServiceConfig<T> extends ServiceConfigBase<T> {
                 serviceMetadata
         );
 
+        //获取注册中心的配置
         List<URL> registryURLs = ConfigValidationUtils.loadRegistries(this, true);
-
+        //获取配置的服务暴露协议
         for (ProtocolConfig protocolConfig : protocols) {
             String pathKey = URL.buildKey(getContextPath(protocolConfig)
                     .map(p -> p + "/" + path)
@@ -322,16 +323,19 @@ public class ServiceConfig<T> extends ServiceConfigBase<T> {
             repository.registerService(pathKey, interfaceClass);
             // TODO, uncomment this line once service key is unified
             serviceMetadata.setServiceKey(pathKey);
+            //真正的暴露，通过协议和注册中心去完成暴露服务
             doExportUrlsFor1Protocol(protocolConfig, registryURLs);
         }
     }
 
     private void doExportUrlsFor1Protocol(ProtocolConfig protocolConfig, List<URL> registryURLs) {
         String name = protocolConfig.getName();
+        //设置默认使用的协议dubbo
         if (StringUtils.isEmpty(name)) {
             name = DUBBO;
         }
 
+        //将配置信息、协议、暴露服务的方法放到map中
         Map<String, String> map = new HashMap<String, String>();
         map.put(SIDE_KEY, PROVIDER_SIDE);
 
@@ -442,6 +446,7 @@ public class ServiceConfig<T> extends ServiceConfigBase<T> {
         // export service
         String host = findConfigedHosts(protocolConfig, registryURLs, map);
         Integer port = findConfigedPorts(protocolConfig, name, map);
+        //拼接url
         URL url = new URL(name, host, port, getContextPath(protocolConfig).map(p -> p + "/" + path).orElse(path), map);
 
         // You can customize Configurator to append extra parameters
@@ -450,17 +455,18 @@ public class ServiceConfig<T> extends ServiceConfigBase<T> {
             url = ExtensionLoader.getExtensionLoader(ConfiguratorFactory.class)
                     .getExtension(url.getProtocol()).getConfigurator(url).configure(url);
         }
-
+        //获取scope属性
         String scope = url.getParameter(SCOPE_KEY);
-        // don't export when none is configured
+        //配置为none不暴露
         if (!SCOPE_NONE.equalsIgnoreCase(scope)) {
 
-            // export to local if the config is not remote (export to remote only when config is remote)
+            //配置不是remote的情况下做本地暴露 (配置为remote，则表示只暴露远程服务)
             if (!SCOPE_REMOTE.equalsIgnoreCase(scope)) {
                 exportLocal(url);
             }
-            // export to remote if the config is not local (export to local only when config is local)
+            //如果配置不是local则暴露为远程服务.(配置为local，则表示只暴露远程服务)
             if (!SCOPE_LOCAL.equalsIgnoreCase(scope)) {
+                //只有远程暴露才需要用到注册中心url
                 if (CollectionUtils.isNotEmpty(registryURLs)) {
                     for (URL registryURL : registryURLs) {
                         //if protocol is only injvm ,not register
@@ -468,6 +474,7 @@ public class ServiceConfig<T> extends ServiceConfigBase<T> {
                             continue;
                         }
                         url = url.addParameterIfAbsent(DYNAMIC_KEY, registryURL.getParameter(DYNAMIC_KEY));
+                        //获取监控中心的URL，此处先暂不关心生成的细节，待到服务治理时才详细分析
                         URL monitorUrl = ConfigValidationUtils.loadMonitor(this, registryURL);
                         if (monitorUrl != null) {
                             url = url.addParameterAndEncoded(MONITOR_KEY, monitorUrl.toFullString());
@@ -486,13 +493,21 @@ public class ServiceConfig<T> extends ServiceConfigBase<T> {
                             registryURL = registryURL.addParameter(PROXY_KEY, proxy);
                         }
 
+                        //这里对参数做个介绍：
+                        //参数1：ref就是接口实现类
+                        //参数2：interfaceClass:接口类
+                        //参数3：在registryURL上添加参数，key为"export",value就是前面产生的服务协义的url
+                        //proxyFactory的来历
+                        //ExtensionLoader.getExtensionLoader(ProxyFactory.class).getAdaptiveExtension()
+                        //这个类实例最终就是com.alibaba.dubbo.rpc.proxy.javassist.JavassistProxyFactory类的实例，这是由于ProxyFactory类上
+                        //的注解决定的
                         Invoker<?> invoker = PROXY_FACTORY.getInvoker(ref, (Class) interfaceClass, registryURL.addParameterAndEncoded(EXPORT_KEY, url.toFullString()));
                         DelegateProviderMetaDataInvoker wrapperInvoker = new DelegateProviderMetaDataInvoker(invoker, this);
 
                         Exporter<?> exporter = PROTOCOL.export(wrapperInvoker);
                         exporters.add(exporter);
                     }
-                } else {
+                } else {//这个是用来没有注册中心情况下的暴露，应该是用于直连的场景
                     if (logger.isInfoEnabled()) {
                         logger.info("Export dubbo service " + interfaceClass.getName() + " to url " + url);
                     }

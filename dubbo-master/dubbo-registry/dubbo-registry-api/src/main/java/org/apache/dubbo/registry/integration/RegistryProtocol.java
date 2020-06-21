@@ -196,39 +196,41 @@ public class RegistryProtocol implements Protocol {
         // url to export locally
         URL providerUrl = getProviderUrl(originInvoker);
 
-        // Subscribe the override data
-        // FIXME When the provider subscribes, it will affect the scene : a certain JVM exposes the service and call
-        //  the same service. Because the subscribed is cached key with the name of the service, it causes the
-        //  subscription information to cover.
+        // 订阅override数据
+        // FIXME 提供者订阅时，会影响同一JVM即暴露服务，又引用同一服务的的场景，
+        // 因为subscribed以服务名为缓存的key，导致订阅信息覆盖。
         final URL overrideSubscribeUrl = getSubscribedOverrideUrl(providerUrl);
         final OverrideListener overrideSubscribeListener = new OverrideListener(overrideSubscribeUrl, originInvoker);
         overrideListeners.put(overrideSubscribeUrl, overrideSubscribeListener);
 
         providerUrl = overrideUrlWithConfig(providerUrl, overrideSubscribeListener);
-        //export invoker
+        // 在本地暴露服务
         final ExporterChangeableWrapper<T> exporter = doLocalExport(originInvoker, providerUrl);
 
-        // url to registry
+        //registry provider
+        // 拿到zookeeper的注册信息
         final Registry registry = getRegistry(originInvoker);
+        // 获取需要暴露provider的url对象，dubbo的注册订阅通信都是以url作为参数传递的
         final URL registeredProviderUrl = getUrlToRegistry(providerUrl, registryUrl);
 
         // decide if we need to delay publish
         boolean register = providerUrl.getParameter(REGISTER_KEY, true);
         if (register) {
+            //注册服务到注册中心zooker
             register(registryUrl, registeredProviderUrl);
         }
 
         // register stated url on provider model
         registerStatedUrl(registryUrl, registeredProviderUrl, register);
 
-        // Deprecated! Subscribe to override rules in 2.6.x or before.
+        // 暴露的同时订阅服务，另外会在zk上创建configurators节点信息
         registry.subscribe(overrideSubscribeUrl, overrideSubscribeListener);
 
         exporter.setRegisterUrl(registeredProviderUrl);
         exporter.setSubscribeUrl(overrideSubscribeUrl);
 
         notifyExport(exporter);
-        //Ensure that a new exporter instance is returned every time export
+        //保证每次export都返回一个新的exporter实例
         return new DestroyableExporter<>(exporter);
     }
 

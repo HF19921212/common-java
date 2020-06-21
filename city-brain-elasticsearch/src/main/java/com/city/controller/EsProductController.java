@@ -1,7 +1,7 @@
 package com.city.controller;
 
 import com.city.common.CommonPage;
-import com.city.document.EsProduct;
+import com.city.elasticsearch.document.EsProduct;
 import com.city.service.EsProductService;
 import com.power.common.enums.HttpCodeEnum;
 import com.power.common.model.CommonResult;

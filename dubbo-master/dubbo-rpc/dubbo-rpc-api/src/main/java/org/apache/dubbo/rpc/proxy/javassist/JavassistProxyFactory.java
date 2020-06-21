@@ -39,6 +39,10 @@ public class JavassistProxyFactory extends AbstractProxyFactory {
     public <T> Invoker<T> getInvoker(T proxy, Class<T> type, URL url) {
         // TODO Wrapper cannot handle this scenario correctly: the classname contains '$'
         final Wrapper wrapper = Wrapper.getWrapper(proxy.getClass().getName().indexOf('$') < 0 ? proxy.getClass() : type);
+        //第一个参数proxy传入是的ref变量
+        //ref的定义：private T  ref; //接口实现类的引用  ，就是接口实现类的Class的实例
+        //第二个参数 type  的定义是：private Class<?>            interfaceClass;  //也就是我们定义服务接口
+        //第三个参数url 比较理解，是由之前面的调用方法 doExportUrlsFor1Protocol(protocolConfig, registryURLs) 方法拼接出来的
         return new AbstractProxyInvoker<T>(proxy, type, url) {
             @Override
             protected Object doInvoke(T proxy, String methodName,

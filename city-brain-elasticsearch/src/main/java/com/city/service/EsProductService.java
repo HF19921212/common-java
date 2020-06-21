@@ -1,8 +1,7 @@
 package com.city.service;
 
-import com.city.document.EsProduct;
+import com.city.elasticsearch.document.EsProduct;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 
