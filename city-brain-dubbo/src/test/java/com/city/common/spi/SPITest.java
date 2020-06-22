@@ -14,6 +14,5 @@ public class SPITest {
 
         IOrderService weChat = loader.getExtension("weChat");
         System.out.println(weChat.way());
-
     }
 }
