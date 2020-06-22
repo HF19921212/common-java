@@ -190,31 +190,51 @@ public class RegistryProtocol implements Protocol {
                 registered));
     }
 
+    /**
+     * 调用 doLocalExport 导出服务
+     * 向注册中心注册服务
+     * 向注册中心进行订阅 override 数据
+     * 创建并返回 DestroyableExporter
+     * @param originInvoker
+     * @param <T>
+     * @return
+     * @throws RpcException
+     */
     @Override
     public <T> Exporter<T> export(final Invoker<T> originInvoker) throws RpcException {
+        /****************************** 导出服务 ******************************/
+
+        // 获取注册中心 URL，以 zookeeper 注册中心为例，得到的示例 URL 如下：
+        // zookeeper://127.0.0.1:2181/com.alibaba.dubbo.registry.RegistryService?application=demo-provider&dubbo=2.0.2&export=dubbo%3A%2F%2F172.17.48.52%3A20880%2Fcom.alibaba.dubbo.demo.DemoService%3Fanyhost%3Dtrue%26application%3Ddemo-provider
         URL registryUrl = getRegistryUrl(originInvoker);
-        // url to export locally
+        // 获取已注册的服务提供者 URL，比如：
+        // dubbo://172.17.48.52:20880/com.alibaba.dubbo.demo.DemoService?anyhost=true&application=demo-provider&dubbo=2.0.2&generic=false&interface=com.alibaba.dubbo.demo.DemoService&methods=sayHello
         URL providerUrl = getProviderUrl(originInvoker);
 
-        // 订阅override数据
-        // FIXME 提供者订阅时，会影响同一JVM即暴露服务，又引用同一服务的的场景，
-        // 因为subscribed以服务名为缓存的key，导致订阅信息覆盖。
+        // 获取订阅 URL，比如：
+        // provider://172.17.48.52:20880/com.alibaba.dubbo.demo.DemoService?category=configurators&check=false&anyhost=true&application=demo-provider&dubbo=2.0.2&generic=false&interface=com.alibaba.dubbo.demo.DemoService&methods=sayHello
         final URL overrideSubscribeUrl = getSubscribedOverrideUrl(providerUrl);
+
+        // 创建监听器
         final OverrideListener overrideSubscribeListener = new OverrideListener(overrideSubscribeUrl, originInvoker);
         overrideListeners.put(overrideSubscribeUrl, overrideSubscribeListener);
 
         providerUrl = overrideUrlWithConfig(providerUrl, overrideSubscribeListener);
-        // 在本地暴露服务
+        // 导出服务
         final ExporterChangeableWrapper<T> exporter = doLocalExport(originInvoker, providerUrl);
 
-        //registry provider
-        // 拿到zookeeper的注册信息
+
+        /****************************** 注册服务 ******************************/
+
+        // 根据 URL 加载 Registry 实现类，比如 ZookeeperRegistry
         final Registry registry = getRegistry(originInvoker);
-        // 获取需要暴露provider的url对象，dubbo的注册订阅通信都是以url作为参数传递的
+        // 获取已注册的服务提供者 URL，比如：
+        // dubbo://172.17.48.52:20880/com.alibaba.dubbo.demo.DemoService?anyhost=true&application=demo-provider&dubbo=2.0.2&generic=false&interface=com.alibaba.dubbo.demo.DemoService&methods=sayHello
         final URL registeredProviderUrl = getUrlToRegistry(providerUrl, registryUrl);
 
-        // decide if we need to delay publish
+        // 获取 register 参数
         boolean register = providerUrl.getParameter(REGISTER_KEY, true);
+        // 根据 register 的值决定是否注册服务
         if (register) {
             //注册服务到注册中心zooker
             register(registryUrl, registeredProviderUrl);
