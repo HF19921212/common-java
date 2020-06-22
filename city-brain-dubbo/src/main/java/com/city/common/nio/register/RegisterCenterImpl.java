@@ -21,7 +21,7 @@ public class RegisterCenterImpl implements IRegisterCenter {
     //注册服务
     @Override
     public void register(String serverName, String serviceAddress) {
-        //registers/com.city.common.interfaces/sayHello
+        //registers/com.city.common.spi.IOrderService/sayHello
         String servicePath = ZKConfig.ZK_REGISTER + "/" + serverName;
 
         try {

@@ -9,7 +9,7 @@ public class ClientTest {
         public static void main(String[] args) {
         IServiceDiscovery serviceDiscovery = new ServiceDiscoveryImpl();
 
-        String url = serviceDiscovery.discover("com.city.common.interfaces.IHelloService");
+        String url = serviceDiscovery.discover("com.city.common.spi.IOrderService.IHelloService");
 
         RpcClientProxy rpcClientProxy = new RpcClientProxy(serviceDiscovery);
 
