@@ -1,2 +1,3 @@
 alipay=com.city.common.spi.extension.AlipayOrderImpl
 weChat=com.city.common.spi.extension.WeChatOrderImpl
+wrapper=com.city.common.spi.wrapper.OrderWrapper
