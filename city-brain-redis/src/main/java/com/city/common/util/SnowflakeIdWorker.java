@@ -1,4 +1,4 @@
-package com.city.common.lock;
+package com.city.common.util;
 
 public class SnowflakeIdWorker {
     // ==============================Fields==================

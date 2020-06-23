@@ -1,5 +1,6 @@
 package com.city.common.lock;
 
+import com.city.common.util.JedisPoolUtil;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.params.SetParams;

@@ -1,4 +1,8 @@
-package com.city.common.lock;
+package com.city.common;
+
+import com.city.common.lock.RedisLock;
+import com.city.common.util.JedisPoolUtil;
+import com.city.common.util.SnowflakeIdWorker;
 
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
@@ -37,7 +41,7 @@ public class LockTest {
         System.out.println("执行线程数:{"+clientCount+"},总耗时:{"+(end-start)+"},count数为:{"+count+"}");
         executorService.shutdown();
         //释放redis线程池
-        JedisPoolUtil.release(redisLock.jedisPool,redisLock.jedisPool.getResource());
+        //JedisPoolUtil.release(redisLock.jedisPool,redisLock.jedisPool.getResource());
     }
 
 

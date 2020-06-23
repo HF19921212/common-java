@@ -1,4 +1,4 @@
-package com.city.common.lock;
+package com.city.common.util;
 
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
