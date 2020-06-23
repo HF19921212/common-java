@@ -33,6 +33,19 @@ public class StringUtil {
     }
 
     /**
+     * 设置序列化对象
+     * 与 byte[] getKey(byte[] key) 匹配
+     * @param key
+     * @param value
+     * @return
+     */
+    public String set(byte[] key, byte[] value){
+        Jedis jedis = jedisPool.getResource();
+        String str = jedis.set(key,value);
+        return str;
+    }
+
+    /**
      * 更新
      * @param key
      * @param value
@@ -52,6 +65,18 @@ public class StringUtil {
     public String getKey(String key){
         Jedis jedis = jedisPool.getResource();
         String str = jedis.get(key);
+        return str;
+    }
+
+    /**
+     * 查看
+     * 与 String set(byte[] key, byte[] value) 匹配
+     * @param key
+     * @return
+     */
+    public byte[] getKey(byte[] key){
+        Jedis jedis = jedisPool.getResource();
+        byte[] str = jedis.get(key);
         return str;
     }
 

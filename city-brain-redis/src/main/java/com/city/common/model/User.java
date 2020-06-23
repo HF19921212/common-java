@@ -1,6 +1,8 @@
 package com.city.common.model;
 
-public class User {
+import java.io.Serializable;
+
+public class User implements Serializable {
 
     private int id;
     private String name;
@@ -28,5 +30,14 @@ public class User {
 
     public void setAge(int age) {
         this.age = age;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", age=" + age +
+                '}';
     }
 }
