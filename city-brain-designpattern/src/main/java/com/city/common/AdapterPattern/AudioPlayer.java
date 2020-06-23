@@ -1,6 +1,6 @@
 package com.city.common.AdapterPattern;
 
-//MediaPlayer 接口的实体类
+//实现MediaPlayer接口的实体类
 public class AudioPlayer implements MediaPlayer {
 
     MediaAdapter mediaAdapter;
