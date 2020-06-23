@@ -25,7 +25,7 @@ public class JedisPoolUtil {
                     poolConfig.setMaxWaitMillis(100*1000);
                     poolConfig.setTestOnBorrow(true); // 获得jedis实例时检查可用性(ping): 如果true,那么得到的jedis实例均可用
 
-                    jedisPool = new JedisPool(poolConfig, "127.0.0.1", 6379);
+                    jedisPool = new JedisPool(poolConfig, "localhost", 6379);
                 }
             }
         }

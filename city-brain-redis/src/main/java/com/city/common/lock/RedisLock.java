@@ -33,7 +33,7 @@ public class RedisLock {
             for(;;){
                 //SET命令返回OK ，则证明获取锁成功
                 String lock = jedis.set(lock_key,id,params);
-                if("ok".equals(lock)){
+                if("OK".equals(lock)){
                     return true;
                 }
 
@@ -70,7 +70,7 @@ public class RedisLock {
             }
             return false;
         }finally {
-            JedisPoolUtil.release(jedisPool,jedis);
+            jedis.close();
         }
     }
 

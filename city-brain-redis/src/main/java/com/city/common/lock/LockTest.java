@@ -9,7 +9,7 @@ public class LockTest {
 
     public static void main(String[] args) throws InterruptedException {
         //模拟客户端数量
-        int clientCount =10;
+        int clientCount =100;
         //计数器
         AtomicInteger count = new AtomicInteger();
         CountDownLatch countDownLatch = new CountDownLatch(clientCount);
@@ -35,6 +35,9 @@ public class LockTest {
         countDownLatch.await();
         long end = System.currentTimeMillis();
         System.out.println("执行线程数:{"+clientCount+"},总耗时:{"+(end-start)+"},count数为:{"+count+"}");
+        executorService.shutdown();
+        //释放redis线程池
+        JedisPoolUtil.release(redisLock.jedisPool,redisLock.jedisPool.getResource());
     }
 
 
