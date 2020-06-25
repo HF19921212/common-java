@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC
+        "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.city.dao.EsProductDao">
+
+    <select id="getRolePermissions">
+        SELECT
+            p.role_id,p.permission_id,rp.url,rp.role_name
+        FROM permission p,role_permission rp
+        WHERE p.id=rp.permission_id
+    </select>
+
+</mapper>
