@@ -35,6 +35,16 @@ public class UserService {
     @Value("${SSO_SESSION_EXPIRE}")
     private Integer SSO_SESSION_EXPIRE;
 
+    public ItdragonResult registerUser(User user) {
+        // 检查用户名是否注册，一般在前端验证的时候处理，因为注册不存在高并发的情况，这里再加一层查询是不影响性能的
+        if (null != userRepository.findByAccount(user.getAccount())) {
+            return ItdragonResult.build(400, "");
+        }
+        userRepository.save(user);
+        // 注册成功后选择发送邮件激活。现在一般都是短信验证码
+        return ItdragonResult.build(200, "");
+    }
+
     public ItdragonResult userLogin(String account, String password,
                                     HttpServletRequest request, HttpServletResponse response) {
         // 判断账号密码是否正确
@@ -51,7 +61,7 @@ public class UserService {
         user.setSalt(null);
         // 把用户信息写入 redis
         jedisClient.set(REDIS_USER_SESSION_KEY + ":" + token, JsonUtils.objectToJson(user));
-        // user 已经是持久化对象，被保存在session缓存当中，若user又重新修改属性值，那么在提交事务时，此时 hibernate对象就会拿当前这个user对象和保存在session缓存中的user对象进行比较，如果两个对象相同，则不会发送update语句，否则会发出update语句。
+        // user 已经是持久化对象了，被保存在了session缓存当中，若user又重新修改了属性值，那么在提交事务时，此时 hibernate对象就会拿当前这个user对象和保存在session缓存中的user对象进行比较，如果两个对象相同，则不会发送update语句，否则，如果两个对象不同，则会发出update语句。
         user.setPassword(userPassword);
         user.setSalt(userSalt);
         // 设置 session 的过期时间
@@ -78,4 +88,5 @@ public class UserService {
         // 返回用户信息
         return ItdragonResult.ok(JsonUtils.jsonToPojo(json, User.class));
     }
+
 }

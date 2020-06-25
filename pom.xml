@@ -10,6 +10,8 @@
         <module>city-brain-netty</module>
         <module>city-brain-jms</module>
         <module>city-brain-redis</module>
+        <module>city-brain-designpattern</module>
+        <module>city-brain-security</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
