@@ -27,7 +27,7 @@ public class UserLoginHandlerInterceptor implements HandlerInterceptor {
         User user = this.userService.getUserByToken(token);
         if (StringUtils.isEmpty(token) || null == user) {
             // 跳转到登录页面，把用户请求的url作为参数传递给登录页面。
-            response.sendRedirect("http://localhost:8888/login?redirect=" + request.getRequestURL());
+            response.sendRedirect("http://localhost:8888/brain-sso/login?redirect=" + request.getRequestURL());
             // 返回false
             return false;
         }
