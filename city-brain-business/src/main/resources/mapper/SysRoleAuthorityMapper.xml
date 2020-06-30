@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.city.repository.SysRoleAuthorityMapper">
+  <resultMap id="BaseResultMap" type="com.city.model.SysRoleAuthority">
+    <result column="role_id" jdbcType="SMALLINT" property="roleId" />
+    <result column="authority_id" jdbcType="SMALLINT" property="authorityId" />
+  </resultMap>
+  <insert id="insert" parameterType="com.city.model.SysRoleAuthority">
+    insert into sys_role_authority (role_id, authority_id)
+    values (#{roleId,jdbcType=SMALLINT}, #{authorityId,jdbcType=SMALLINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.city.model.SysRoleAuthority">
+    insert into sys_role_authority
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="roleId != null">
+        role_id,
+      </if>
+      <if test="authorityId != null">
+        authority_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="roleId != null">
+        #{roleId,jdbcType=SMALLINT},
+      </if>
+      <if test="authorityId != null">
+        #{authorityId,jdbcType=SMALLINT},
+      </if>
+    </trim>
+  </insert>
+</mapper>

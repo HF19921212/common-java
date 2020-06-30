@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.city.repository.SysUserRoleMapper">
+  <resultMap id="BaseResultMap" type="com.city.model.SysUserRoleKey">
+    <id column="user_id" jdbcType="SMALLINT" property="userId" />
+    <id column="role_id" jdbcType="SMALLINT" property="roleId" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="com.city.model.SysUserRoleKey">
+    delete from sys_user_role
+    where user_id = #{userId,jdbcType=SMALLINT}
+      and role_id = #{roleId,jdbcType=SMALLINT}
+  </delete>
+  <insert id="insert" parameterType="com.city.model.SysUserRoleKey">
+    insert into sys_user_role (user_id, role_id)
+    values (#{userId,jdbcType=SMALLINT}, #{roleId,jdbcType=SMALLINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.city.model.SysUserRoleKey">
+    insert into sys_user_role
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="roleId != null">
+        role_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userId != null">
+        #{userId,jdbcType=SMALLINT},
+      </if>
+      <if test="roleId != null">
+        #{roleId,jdbcType=SMALLINT},
+      </if>
+    </trim>
+  </insert>
+</mapper>

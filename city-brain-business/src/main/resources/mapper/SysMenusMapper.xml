@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.city.repository.SysMenusMapper">
+  <resultMap id="BaseResultMap" type="com.city.model.SysMenus">
+    <id column="id" jdbcType="SMALLINT" property="id" />
+    <result column="name_ch" jdbcType="VARCHAR" property="nameCh" />
+    <result column="name_en" jdbcType="VARCHAR" property="nameEn" />
+    <result column="parent_id" jdbcType="SMALLINT" property="parentId" />
+    <result column="order_id" jdbcType="SMALLINT" property="orderId" />
+    <result column="menu_auth" jdbcType="VARCHAR" property="menuAuth" />
+    <result column="auth_id" jdbcType="SMALLINT" property="authId" />
+    <result column="img_url" jdbcType="VARCHAR" property="imgUrl" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, name_ch, name_en, parent_id, order_id, menu_auth, auth_id, img_url
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Short" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_menus
+    where id = #{id,jdbcType=SMALLINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Short">
+    delete from sys_menus
+    where id = #{id,jdbcType=SMALLINT}
+  </delete>
+  <insert id="insert" parameterType="com.city.model.SysMenus">
+    insert into sys_menus (id, name_ch, name_en, 
+      parent_id, order_id, menu_auth, 
+      auth_id, img_url)
+    values (#{id,jdbcType=SMALLINT}, #{nameCh,jdbcType=VARCHAR}, #{nameEn,jdbcType=VARCHAR}, 
+      #{parentId,jdbcType=SMALLINT}, #{orderId,jdbcType=SMALLINT}, #{menuAuth,jdbcType=VARCHAR}, 
+      #{authId,jdbcType=SMALLINT}, #{imgUrl,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.city.model.SysMenus">
+    insert into sys_menus
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="nameCh != null">
+        name_ch,
+      </if>
+      <if test="nameEn != null">
+        name_en,
+      </if>
+      <if test="parentId != null">
+        parent_id,
+      </if>
+      <if test="orderId != null">
+        order_id,
+      </if>
+      <if test="menuAuth != null">
+        menu_auth,
+      </if>
+      <if test="authId != null">
+        auth_id,
+      </if>
+      <if test="imgUrl != null">
+        img_url,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=SMALLINT},
+      </if>
+      <if test="nameCh != null">
+        #{nameCh,jdbcType=VARCHAR},
+      </if>
+      <if test="nameEn != null">
+        #{nameEn,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null">
+        #{parentId,jdbcType=SMALLINT},
+      </if>
+      <if test="orderId != null">
+        #{orderId,jdbcType=SMALLINT},
+      </if>
+      <if test="menuAuth != null">
+        #{menuAuth,jdbcType=VARCHAR},
+      </if>
+      <if test="authId != null">
+        #{authId,jdbcType=SMALLINT},
+      </if>
+      <if test="imgUrl != null">
+        #{imgUrl,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.city.model.SysMenus">
+    update sys_menus
+    <set>
+      <if test="nameCh != null">
+        name_ch = #{nameCh,jdbcType=VARCHAR},
+      </if>
+      <if test="nameEn != null">
+        name_en = #{nameEn,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null">
+        parent_id = #{parentId,jdbcType=SMALLINT},
+      </if>
+      <if test="orderId != null">
+        order_id = #{orderId,jdbcType=SMALLINT},
+      </if>
+      <if test="menuAuth != null">
+        menu_auth = #{menuAuth,jdbcType=VARCHAR},
+      </if>
+      <if test="authId != null">
+        auth_id = #{authId,jdbcType=SMALLINT},
+      </if>
+      <if test="imgUrl != null">
+        img_url = #{imgUrl,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=SMALLINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.city.model.SysMenus">
+    update sys_menus
+    set name_ch = #{nameCh,jdbcType=VARCHAR},
+      name_en = #{nameEn,jdbcType=VARCHAR},
+      parent_id = #{parentId,jdbcType=SMALLINT},
+      order_id = #{orderId,jdbcType=SMALLINT},
+      menu_auth = #{menuAuth,jdbcType=VARCHAR},
+      auth_id = #{authId,jdbcType=SMALLINT},
+      img_url = #{imgUrl,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=SMALLINT}
+  </update>
+</mapper>

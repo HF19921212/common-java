@@ -1,1 +1,16 @@
+server:
+  port: 8080
+  context-path: /city-brain-business
+
+spring:
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    url: jdbc:mysql://localhost:3306/test?serverTimezone=UTC
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: 123456
+mybatis:
+  # 重要配置
+  type-aliases-package: com.city.model
+  mapper-locations: classpath:mapper/*.xml
 
