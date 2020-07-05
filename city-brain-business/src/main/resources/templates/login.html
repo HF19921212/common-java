@@ -6,12 +6,41 @@
 </head>
 <body>
 <h1>标准登陆</h1>
-<form action="/city-brain-business/user/login" method="post">
-
-    username: <input type="text" name="username" value="itdragon"/> <br/>
-    password: <input type="password" name="password" value="123456789"/> <br/>
-    <button type="submit">登陆</button>
-
-</form>
+<!--<form action="/city-brain-business/user/login" method="post">-->
+    <div id="login">
+        username: <input type="text" name="username" value="admin" v-model="username"/> <br/>
+        password: <input type="password" name="password" value="123456" v-model="password"/> <br/>
+        <button v-on:click="submit">登陆</button>
+    </div>
+<!--</form>-->
 </body>
+<script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script>
+    new Vue({
+        el: '#login',
+        data: {
+            username: '',
+            password: ''
+        },
+        methods: {
+            submit: function (event) {
+                var params = new URLSearchParams();
+                params.append('username', this.username);
+                params.append('password', this.password);
+
+                //alert("formdata："+JSON.stringify(params));
+                axios
+                    .post('/city-brain-business/user/login',params,{ emulateJSON: false })
+                    .then(response => (
+                        this.info = response,
+                        window.location.href="/city-brain-business"
+                     ))
+                    .catch(function (error) { // 请求失败处理
+                        console.log(error);
+                    });
+            }
+        }
+    })
+</script>
 </html>

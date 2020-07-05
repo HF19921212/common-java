@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/city-brain-business/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/city-brain-designpattern/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/city-brain-dubbo/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/city-brain-dubbo/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/city-brain-elasticsearch/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/city-brain-interface/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/city-brain-java/src/main/java" charset="UTF-8" />
@@ -9,9 +12,12 @@
     <file url="file://$PROJECT_DIR$/city-brain-jms/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/city-brain-netty/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/city-brain-redis/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/city-brain-security/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/city-brain-springboot/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/city-brain-springmvc/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/city-brain-springmvc/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/city-brain-sso-client/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/city-brain-sso/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/city-brain-zookeeper/src/main/java" charset="UTF-8" />
   </component>
 </project>
