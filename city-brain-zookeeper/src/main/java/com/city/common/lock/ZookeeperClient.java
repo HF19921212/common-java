@@ -10,7 +10,7 @@ import java.util.concurrent.CountDownLatch;
 public class ZookeeperClient {
 
     //集群地址
-    private final static String CONNECTSTRING = "192.168.56.1:2181";
+    private final static String CONNECTSTRING = "127.0.0.1:2181";
     private static int sessionTimeout = 5000;
 
     //获取连接

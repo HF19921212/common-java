@@ -57,6 +57,7 @@ public class DistributedLock {
             if(!lessThanLock.isEmpty()){
                 //拿到比当前lockId节点更小的上一个节点
                 String prevLockId = lessThanLock.last();
+                //调用 ZooKeeper.exists() 检查指定的 Znode 是否存在，并设置监听,传递自身引用作为回调对象
                 zooKeeper.exists(prevLockId,new LockWatcher(countDownLatch));
                 countDownLatch.await(sessionTimeout, TimeUnit.MILLISECONDS);
                 //上面这段代码表示如果会话超时，或者节点被删除（释放）了
